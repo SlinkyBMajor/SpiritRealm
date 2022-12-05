@@ -1,4 +1,4 @@
-Board invite link: [[https://trello.com/b/3feTjW2g/realm](https://trello.com/invite/b/3feTjW2g/ATTIcf075e13f8e261d1d76359deccf34b0e264FC9E3/realm)]([https://trello.com/b/3feTjW2g/realm](https://trello.com/invite/b/3feTjW2g/ATTIcf075e13f8e261d1d76359deccf34b0e264FC9E3/realm))
+Board invite link: https://trello.com/invite/b/3feTjW2g/ATTIcf075e13f8e261d1d76359deccf34b0e264FC9E3/realm
 Project board: [https://trello.com/b/3feTjW2g/realm](https://trello.com/b/3feTjW2g/realm)
 
 ## Getting Started
