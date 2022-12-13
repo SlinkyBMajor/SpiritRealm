@@ -13,7 +13,7 @@ export interface ActorProperties {
 }
 
 export interface Actor extends ActorProperties {
-  /* isDead: () => boolean; */
+  isDead: () => boolean;
   takeDamage: (value: number) => void;
 }
 
@@ -21,9 +21,9 @@ export function useActor(actorProperties: ActorProperties): Actor {
   const [properties, setProperties] =
     useState<ActorProperties>(actorProperties);
 
-  /* const isDead = useCallback(() => {
+  const isDead = useCallback(() => {
     return properties._currentHP < 1;
-  }, [properties._currentHP]); */
+  }, [properties._currentHP]);
 
   const takeDamage = (value: number) => {
     if (typeof value !== "number") {
@@ -33,5 +33,5 @@ export function useActor(actorProperties: ActorProperties): Actor {
     setProperties((prev) => ({ ...prev, _currentHP: prev._currentHP - value }));
   };
 
-  return { ...properties, takeDamage };
+  return { ...properties, takeDamage, isDead };
 }
