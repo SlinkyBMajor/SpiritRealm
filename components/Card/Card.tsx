@@ -2,9 +2,9 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import cardData from "./card-data.json";
 /* import ElementalCalamityImage from "../../assets/card-images/elemental-calamity.png"; */
 
+import { CardType } from "../../types/card";
 import {
   CardImage,
   CardName,
@@ -14,7 +14,11 @@ import {
 } from "./styles";
 import { faBoltLightning, faFire } from "@fortawesome/free-solid-svg-icons";
 
-export default function PlayingCard() {
+interface CardProps {
+  cardData: CardType;
+}
+
+export default function Card({ cardData }: CardProps) {
   return (
     <motion.div
       drag

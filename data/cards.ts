@@ -1,6 +1,6 @@
-import { Card } from "../types/card";
+import { CardType } from "../types/card";
 
-const cards: Card[] = [
+const cards: CardType[] = [
   {
     name: "Elemental Calamity",
     image: "elemental-calamity",

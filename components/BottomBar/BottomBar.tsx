@@ -1,7 +1,10 @@
 import React from "react";
-import PlayingCard from "../Card/Card";
+import cards from "../../data/cards";
+import Card from "../Card/Card";
 import ManaRomb from "./ManaRomb";
 import { Bar, Hand, HandWrapper, ManaContainer } from "./styles";
+
+const hand = [cards[0], cards[0], cards[0]];
 
 export default function BottomBar() {
   return (
@@ -11,8 +14,9 @@ export default function BottomBar() {
       </ManaContainer>
       <HandWrapper>
         <Hand>
-          <PlayingCard />
-          <PlayingCard />
+          {hand.map((card, i) => (
+            <Card key={card.name + i} cardData={card} />
+          ))}
         </Hand>
       </HandWrapper>
     </Bar>

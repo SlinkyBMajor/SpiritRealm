@@ -1,9 +1,11 @@
 export type ActionType = "damage" | "heal";
 
-export enum Action {
+export type Element = "none" | "fire" | "lightning";
+
+/* export enum Action {
   damage = "damage",
   heal = "heal",
-}
+} */
 
 export interface Effect {
   type: ActionType;
