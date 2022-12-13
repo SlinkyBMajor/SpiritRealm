@@ -5,6 +5,12 @@ const defaultPlayer = {
   _maxHP: 100,
   _currentHP: 100,
   _team: Team.ally,
+  _mana: {
+    white: {
+      max: 4,
+      current: 4,
+    },
+  },
 };
 
 const PlayerContext = createContext<Actor | null>(null);

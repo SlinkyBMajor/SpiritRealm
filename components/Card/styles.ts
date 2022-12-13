@@ -59,4 +59,7 @@ export const DescriptionBox = styled.div`
 export const Tags = styled.div`
   display: flex;
   padding: 0.5em 1em;
+  & > * {
+    margin-right: 6px;
+  }
 `;

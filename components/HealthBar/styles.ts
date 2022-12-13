@@ -1,9 +1,19 @@
 import styled from "@emotion/styled";
 
+export const HealthWrapper = styled.div`
+  display: inline-flex;
+  align-content: center;
+  flex-wrap: wrap;
+  height: 24px;
+  & > * {
+    margin-right: 8px;
+  }
+`;
+
 export const BarBackground = styled.div`
   background-color: #eee;
   position: relative;
-  width: 100px;
+  width: 140px;
   height: 12px;
 `;
 
