@@ -7,8 +7,9 @@ export const BarBackground = styled.div`
   height: 12px;
 `;
 
-export const RedBar = styled.div`
-  width: 10%;
+export const RedBar = styled.div<{ percent: number }>`
+  width: ${({ percent }) => percent}%;
+  transition: width 1s ease-in-out;
   height: 12px;
   background-color: #ff6684;
 `;
