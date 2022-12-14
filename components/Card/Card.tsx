@@ -2,8 +2,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-/* import ElementalCalamityImage from "../../assets/card-images/elemental-calamity.png"; */
-
 import { CardType } from "../../types/card";
 import {
   CardImage,
