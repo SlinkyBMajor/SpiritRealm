@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 export const Bar = styled.div`
   display: flex;
   width: 100%;
+  background-color: black;
   height: 15vh;
   /* border-top: 1px solid red; */
   /* padding: 0 5%; */
