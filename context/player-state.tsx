@@ -8,7 +8,7 @@ const defaultPlayer = {
   _mana: {
     white: {
       max: 4,
-      current: 2,
+      current: 4,
     },
   },
 };
