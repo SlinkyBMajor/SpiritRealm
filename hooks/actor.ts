@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { ActorClass } from "../classes/actor";
 
 export enum Team {
   neutral = "NEUTRAL", // Non attackable
@@ -58,6 +59,14 @@ export function useActor(actorProperties: ActorProperties): Actor {
         white: {
           ...prev._mana.white,
           current: prev._mana.white.current - value,
+        },
+        lightning: {
+          ...prev._mana.lightning,
+          current: prev._mana.lightning.current - value,
+        },
+        chaos: {
+          ...prev._mana.chaos,
+          current: prev._mana.chaos.current - value,
         },
       },
     }));
