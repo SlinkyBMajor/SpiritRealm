@@ -13,6 +13,8 @@ export interface ActorProperties {
   _currentHP: number;
   _mana: {
     white: ManaProperty;
+    lightning: ManaProperty;
+    chaos: ManaProperty;
   };
   _team: Team;
 }
