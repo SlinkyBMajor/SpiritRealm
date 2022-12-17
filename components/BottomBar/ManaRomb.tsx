@@ -41,6 +41,8 @@ export default function ManaRomb() {
       ? (player!._mana.white.current / player!._mana.white.max) * 100
       : 0;
 
+  console.log(Object.getOwnPropertyNames(player?._mana.white));
+
   return (
     <>
       <Romb>
@@ -50,7 +52,7 @@ export default function ManaRomb() {
         </span>
         <InnerRomb percent={manaPercent} />
       </Romb>
-      <button onClick={() => player?.spendMana(1)}>Test</button>
+      <button onClick={() => player?.spendMana(1, "white")}>Test</button>
     </>
   );
 }

@@ -19,11 +19,12 @@ export interface ActorProperties {
   };
   _team: Team;
 }
+type ManaType = "white" | "lightning" | "chaos";
 
 export interface Actor extends ActorProperties {
   isDead: () => boolean;
   takeDamage: (value: number) => void;
-  spendMana: (value: number) => void;
+  spendMana: (value: number, type: ManaType) => void;
 }
 
 export function useActor(actorProperties: ActorProperties): Actor {
@@ -48,11 +49,12 @@ export function useActor(actorProperties: ActorProperties): Actor {
     setProperties((prev) => ({ ...prev, _currentHP: prev._currentHP - value }));
   };
 
-  const spendMana = (value: number) => {
+  const spendMana = (value: number, type: ManaType) => {
     if (typeof value !== "number") {
       throw new Error("takeDamage got non number value");
     }
-    console.log("Actor spent mana", value);
+
+    console.log("Actor spent mana", ":", value, type);
     setProperties((prev) => ({
       ...prev,
       _mana: {
