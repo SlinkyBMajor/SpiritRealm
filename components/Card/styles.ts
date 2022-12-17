@@ -11,16 +11,17 @@ export const PhysicalCard = styled.div`
     rgba(19, 14, 41, 1) 100%
   );
   flex-direction: column;
-  width: 11.5em;
-  height: 14em;
+  width: 10.7rem;
+  height: 14rem;
   border-radius: 8px;
   overflow: hidden;
   border-top: 2px solid rgb(71, 62, 125);
   z-index: 10;
-  margin-right: 0.8em;
+  margin-right: 0.8rem;
 `;
 
 export const CardName = styled.div`
+  font-size: .8rem;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -34,6 +35,8 @@ export const CardImage = styled.div<{ imageName: string }>`
   height: 140px;
   width: 100%;
   margin-bottom: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
   &:hover:after {
     position: absolute;
     content: "";
@@ -53,7 +56,7 @@ export const DescriptionBox = styled.div`
   flex-grow: 1;
   justify-content: center;
   align-content: center;
-  font-size: 12px;
+  font-size: .65rem;
 `;
 
 export const Tags = styled.div`
