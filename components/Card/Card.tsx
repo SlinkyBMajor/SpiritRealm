@@ -30,17 +30,17 @@ export default function Card({ cardData }: CardProps) {
       transition={{ duration: 0.5 }}
       dragConstraints={{
         top: -300,
-        left: -20,
-        right: 20,
+        left: -30,
+        right: 30,
         bottom: 0,
       }}
     >
       <PhysicalCard>
         <CardImage imageName={cardData.image} />
         <CardName>{cardData.name}</CardName>
-        <DescriptionBox>
+        {/* <DescriptionBox>
           <p>{cardData.description}</p>
-        </DescriptionBox>
+        </DescriptionBox> */}
         <Tags>
           <FontAwesomeIcon icon={faBoltLightning} />
           <FontAwesomeIcon icon={faFire} />

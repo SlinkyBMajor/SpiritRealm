@@ -1,5 +1,5 @@
 import { Effect } from "./effect";
-export interface CardType {
+export interface Card {
   name: string;
   image: string;
   description: string;

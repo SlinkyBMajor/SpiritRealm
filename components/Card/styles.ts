@@ -11,8 +11,8 @@ export const PhysicalCard = styled.div`
     rgba(19, 14, 41, 1) 100%
   );
   flex-direction: column;
-  width: 10.7rem;
-  height: 14rem;
+  width: 8.4rem;
+  height: 9rem;
   border-radius: 8px;
   overflow: hidden;
   border-top: 2px solid rgb(71, 62, 125);
