@@ -8,23 +8,30 @@ export enum Team {
 }
 // Properties start with underscore to differentiate between them and the "methods" (takeDamage etc)
 
-type ManaProperty = { max: number; current: number };
 export interface ActorProperties {
   _maxHP: number;
   _currentHP: number;
-  _mana: {
-    white: ManaProperty;
-    lightning: ManaProperty;
-    chaos: ManaProperty;
-  };
+  _mana: Mana;
   _team: Team;
 }
-type ManaType = "white" | "lightning" | "chaos";
+
+interface Mana {
+  white: ManaProperty;
+  lightning: ManaProperty;
+  chaos: ManaProperty;
+}
+
+export type ManaProperty = {
+  max: number;
+  current: number;
+};
+
+export type ManaType = "white" | "lightning" | "chaos";
 
 export interface Actor extends ActorProperties {
   isDead: () => boolean;
   takeDamage: (value: number) => void;
-  spendMana: (value: number, type: ManaType) => void;
+  spendMana: (value: number, type: string) => void;
 }
 
 export function useActor(actorProperties: ActorProperties): Actor {
@@ -49,29 +56,71 @@ export function useActor(actorProperties: ActorProperties): Actor {
     setProperties((prev) => ({ ...prev, _currentHP: prev._currentHP - value }));
   };
 
-  const spendMana = (value: number, type: ManaType) => {
+  const spendMana = (value: number, type: string) => {
     if (typeof value !== "number") {
       throw new Error("takeDamage got non number value");
     }
 
     console.log("Actor spent mana", ":", value, type);
-    setProperties((prev) => ({
-      ...prev,
-      _mana: {
-        white: {
-          ...prev._mana.white,
-          current: prev._mana.white.current - value,
+
+    if (type === "white") {
+      const change = setProperties((prev) => ({
+        ...prev,
+        _mana: {
+          white: {
+            ...prev._mana.white,
+            current: prev._mana.white.current - value,
+          },
+          lightning: {
+            ...prev._mana.lightning,
+          },
+          chaos: {
+            ...prev._mana.chaos,
+          },
         },
-        lightning: {
-          ...prev._mana.lightning,
-          current: prev._mana.lightning.current - value,
+      }));
+
+      return change;
+    }
+    if (type === "lightning") {
+      const change = setProperties((prev) => ({
+        ...prev,
+        _mana: {
+          white: {
+            ...prev._mana.white,
+          },
+          lightning: {
+            ...prev._mana.lightning,
+            current: prev._mana.lightning.current - value,
+          },
+          chaos: {
+            ...prev._mana.chaos,
+          },
         },
-        chaos: {
-          ...prev._mana.chaos,
-          current: prev._mana.chaos.current - value,
+      }));
+
+      return change;
+    }
+
+    if (type === "chaos") {
+      const change = setProperties((prev) => ({
+        ...prev,
+        _mana: {
+          white: {
+            ...prev._mana.white,
+          },
+          lightning: {
+            ...prev._mana.lightning,
+          },
+          chaos: {
+            ...prev._mana.chaos,
+            current: prev._mana.chaos.current - value,
+          },
         },
-      },
-    }));
+      }));
+
+      return change;
+    }
   };
 
   return { ...properties, takeDamage, spendMana, isDead };

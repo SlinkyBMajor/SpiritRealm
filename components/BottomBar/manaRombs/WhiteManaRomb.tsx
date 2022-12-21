@@ -1,6 +1,7 @@
+import React from "react";
 import styled from "@emotion/styled";
-import React, { useState } from "react";
-import { usePlayerState } from "../../context/player-state";
+
+import { usePlayerState } from "../../../context/player-state";
 
 const Romb = styled.div`
   border: 1px solid white;
@@ -33,15 +34,13 @@ const InnerRomb = styled.div<{ percent: number }>`
   transition: height 1s ease-in-out;
 `;
 
-export default function ManaRomb() {
+export default function WhiteManaRomb() {
   const player = usePlayerState();
 
   const manaPercent =
     player!._mana.white.current > 0
       ? (player!._mana.white.current / player!._mana.white.max) * 100
       : 0;
-
-  console.log(Object.getOwnPropertyNames(player?._mana.white));
 
   return (
     <>

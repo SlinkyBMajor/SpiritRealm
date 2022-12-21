@@ -12,11 +12,11 @@ const defaultPlayer = {
     },
     lightning: {
       max: 10,
-      current: 8,
+      current: 10,
     },
     chaos: {
       max: 8,
-      current: 7,
+      current: 8,
     },
   },
 };
