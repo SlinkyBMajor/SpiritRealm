@@ -6,16 +6,16 @@ export enum Team {
   enemy = "ENEMY", // Enemies
   ally = "ALLY", // Player + Allies of player
 }
-// Properties start with underscore to differentiate between them and the "methods" (takeDamage etc)
 
+// Properties start with underscore to differentiate between them and the "methods" (takeDamage etc)
 export interface ActorProperties {
   _maxHP: number;
   _currentHP: number;
-  _mana: Mana;
+  _mana: ManaPools;
   _team: Team;
 }
 
-interface Mana {
+interface ManaPools {
   white: ManaProperty;
   lightning: ManaProperty;
   chaos: ManaProperty;
