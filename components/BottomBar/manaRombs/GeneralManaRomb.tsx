@@ -35,29 +35,6 @@ const InnerRomb = styled.div<{ percent: number; color: string }>`
   transition: height 1s ease-in-out;
 `;
 
-/*
-  mana: {white: {}, chaos: {}} (På actor)
-
-  // Loop i bottom bar:
-  const bla = Object.entries(mana).map([type, manaObject] => (<GeneralRomb type={type} manaObject={manaObject})/>);
-
-  // General romb komponenten:
-  const manaColors = {
-    "white": "white",
-    "chaos": "#hex",
-  }
-
-  const {type} = manaObject;
-
-  // Calc mana percentage
-  player._mana.[type].current > 0 ? mdksajdsaklsldö
-
-  // Get the color for the romb based on the type
-  color={manaColors[type]}
-
-  //...
-*/
-
 enum manaColors {
   "white" = "white",
   "lightning" = "#F9FE6D",
