@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from "react";
-import { ActorClass } from "../classes/actor";
 
 export enum Team {
   neutral = "NEUTRAL", // Non attackable

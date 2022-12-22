@@ -44,13 +44,11 @@ enum manaColors {
 interface GeneralManaRombProps {
   type: string;
   manaObject: ManaProperty;
-  spendMana: (value: string) => void;
 }
 
 export default function GeneralManaRomb({
   type,
   manaObject,
-  spendMana,
 }: GeneralManaRombProps) {
   const player = usePlayerState();
 
@@ -71,7 +69,7 @@ export default function GeneralManaRomb({
           <span>/{manaObject.max}</span>
         </span>
       </Romb>
-      <button onClick={() => spendMana(type)}>Bam</button>
+      <button onClick={() => player?.spendMana(1, type)}>Bam</button>
     </>
   );
 }

@@ -18,17 +18,8 @@ export interface ManaRombType {
 export default function BottomBar() {
   const player = usePlayerState();
 
-  const onChangeMana = (type: string) => {
-    player?.spendMana(1, type);
-  };
-
   const manaRombs = Object.entries(player!._mana).map(([type, manaObject]) => (
-    <GeneralManaRomb
-      key={type}
-      type={type}
-      manaObject={manaObject}
-      spendMana={onChangeMana}
-    />
+    <GeneralManaRomb key={type} type={type} manaObject={manaObject} />
   ));
 
   return (
