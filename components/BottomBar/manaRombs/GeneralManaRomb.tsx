@@ -55,6 +55,10 @@ export default function GeneralManaRomb({
   const manaPerecent =
     manaObject.current > 0 ? (manaObject.current / manaObject.max) * 100 : 0;
 
+  if (manaPerecent <= 0) {
+    alert("You don't have any mana, go meditate bru");
+  }
+
   return (
     <>
       <Romb>
@@ -69,16 +73,9 @@ export default function GeneralManaRomb({
           <span>/{manaObject.max}</span>
         </span>
       </Romb>
-      <button onClick={() => player?.spendMana(1, type)}>Bam</button>
+      {manaPerecent > 0 && (
+        <button onClick={() => player?.spendMana(1, type)}>Bam</button>
+      )}
     </>
   );
 }
-/*    <>
-      <Romb>
-        <span>
-          <span>{player!._mana.white.current}</span>
-          <span>/{player!._mana.white.max}</span>
-        </span>
-        <InnerRomb percent={manaPercent} />
-      </Romb>
-      <button onClick={() => player?.spendMana(1, "white")}>Test</button> */
