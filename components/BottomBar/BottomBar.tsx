@@ -3,7 +3,7 @@ import React from "react";
 import { useDeckState } from "../../context/deck-state";
 
 import cards from "../../data/cards";
-import { turnStateMachine } from "../../state-machines/turnStateMachine";
+import { turnStateMachine } from "../../state-machines/turn/machine";
 import { Button } from "../Base";
 import Card from "../Card/Card";
 import ManaRomb from "./ManaRomb";

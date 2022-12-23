@@ -5,8 +5,11 @@ import BottomBar from "../components/BottomBar/BottomBar";
 import HealthBar from "../components/HealthBar/HealthBar";
 import { Board, UIWrapper } from "../components/Layouts/GameLayout/styles";
 import DeckStateProvider from "../context/deck-state";
+import { service } from "../state-machines/turn/interpreter";
 
 export default function Game() {
+  service.start();
+
   return (
     <PlayerStateProvider>
       <DeckStateProvider>

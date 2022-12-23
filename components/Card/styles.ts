@@ -11,8 +11,8 @@ export const PhysicalCard = styled.div`
     rgba(19, 14, 41, 1) 100%
   );
   flex-direction: column;
-  width: 8.4rem;
-  height: 9rem;
+  width: 8.5rem;
+  height: 11.5rem;
   border-radius: 8px;
   overflow: hidden;
   border-top: 2px solid rgb(71, 62, 125);
@@ -32,7 +32,7 @@ export const CardImage = styled.div<{ imageName: string }>`
     `url(static-assets/card-images/elemental-calamity.png)`};
   background-size: cover;
   background-repeat: no-repeat;
-  height: 140px;
+  height: 110px;
   width: 100%;
   margin-bottom: 8px;
   border-bottom-left-radius: 8px;
