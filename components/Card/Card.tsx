@@ -10,7 +10,11 @@ import {
   PhysicalCard,
   Tags,
 } from "./styles";
-import { faBoltLightning, faFire, faSpa } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBoltLightning,
+  faFire,
+  faSpa,
+} from "@fortawesome/free-solid-svg-icons";
 import { TurnStates } from "../../state-machines/turn-machine";
 import { useTurnState } from "../../state-machines/turn-machine/provider";
 import { useSelector } from "@xstate/react";
@@ -36,7 +40,7 @@ export default function Card({ cardData }: CardProps) {
       dragSnapToOrigin
       initial={{ opacity: 0, scale: 0.3 }}
       animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0 }}
+      exit={{ opacity: 0, y: 8 }}
       whileHover={{
         scale: 1.4,
         transition: { duration: 0.2 },
