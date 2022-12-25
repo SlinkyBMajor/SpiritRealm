@@ -1,7 +1,34 @@
+import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
-import { StaticImageData } from "next/image";
+import Image from "next/image";
 
-export const PhysicalCard = styled.div`
+const shine = keyframes`
+  0% {
+    transform: rotate(0deg) translateY(0px);
+    filter: blur(12px);
+    opacity: .3;
+  }
+  10% {
+    transform: translateY(-1px);
+    
+  }
+  25% {
+    transform: translateY(1px);
+  }
+  60% {
+    transform: translateY(-1px);
+    opacity: .3;
+    opacity: .2;
+    filter: blur(10px);
+  }
+  100% {
+    transform: rotate(360deg);
+    filter: blur(12px);
+    opacity: .3;
+  }
+`;
+
+export const PhysicalCard = styled.div<{ shine: boolean }>`
   user-select: none;
   display: flex;
   background: rgb(33, 36, 73);
@@ -15,21 +42,37 @@ export const PhysicalCard = styled.div`
   height: 11.5rem;
   border-radius: 8px;
   overflow: hidden;
-  border-top: 2px solid rgb(71, 62, 125);
+  border-top: 1px solid rgb(71, 62, 125);
   z-index: 10;
   margin-right: 0.8rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease-in-out;
+  &:after {
+    content: "";
+    position: absolute;
+    width: 8.5rem;
+    height: 100%;
+    background-color: #c7268c;
+    box-shadow: -8px -6px 0 #f70b50;
+    border-radius: 20%;
+    transform: translateX(50px);
+    animation: ${shine} 4s linear infinite;
+    /* filter: blur(22px); */
+    z-index: -1;
+    mix-blend-mode: exclusion;
+    opacity: ${({ shine }) => (shine ? 0.3 : 0)};
+  }
 `;
 
 export const CardName = styled.div`
-  font-size: .8rem;
+  font-size: 0.8rem;
   display: flex;
   justify-content: center;
   align-content: center;
 `;
 
-export const CardImage = styled.div<{ imageName: string }>`
-  background-image: ${(imageName) =>
-    `url(static-assets/card-images/elemental-calamity.png)`};
+export const CardImage = styled(Image)`
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
   background-size: cover;
   background-repeat: no-repeat;
   height: 110px;
@@ -56,7 +99,7 @@ export const DescriptionBox = styled.div`
   flex-grow: 1;
   justify-content: center;
   align-content: center;
-  font-size: .65rem;
+  font-size: 0.65rem;
 `;
 
 export const Tags = styled.div`

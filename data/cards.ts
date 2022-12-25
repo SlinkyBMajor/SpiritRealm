@@ -1,9 +1,9 @@
-import { CardType } from "../types/card";
+import { ICard } from "../types/card";
 
-const cards: CardType[] = [
+const cards: ICard[] = [
   {
-    name: "Elemental Calamity",
-    image: "elemental-calamity",
+    name: "Chaos Bolt",
+    image: "chaos_bolt",
     description: "Fire a crackling bolt of lightning at one target enemy",
     target: {
       type: "actor",

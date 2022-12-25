@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { motion } from "framer-motion";
 
 export const Bar = styled.div`
   display: flex;
@@ -36,6 +37,6 @@ export const HandWrapper = styled.div`
   place-content: center;
   place-items: center;
   flex-grow: 5;
-  /* border: 1px solid red; */
+  z-index: 2;
   height: 15vh;
 `;

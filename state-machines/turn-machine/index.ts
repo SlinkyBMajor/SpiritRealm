@@ -43,16 +43,19 @@ export const turnStateMachine = createMachine(
         },
       },
       [TurnStates.EnemyTurnStart]: {
+        entry: ["tempProgress"],
         on: {
           PROGRESS: TurnStates.EnemyTurnActive,
         },
       },
       [TurnStates.EnemyTurnActive]: {
+        entry: ["tempProgress"],
         on: {
           PROGRESS: TurnStates.EnemyTurnEnd,
         },
       },
       [TurnStates.EnemyTurnEnd]: {
+        entry: ["tempProgress"],
         on: {
           PROGRESS: TurnStates.PlayerTurnStart,
         },
@@ -61,12 +64,12 @@ export const turnStateMachine = createMachine(
   },
   {
     actions: {
-      drawHand: () => {
+      /*   drawHand: () => {
         console.log("Draw hand");
       },
       discardHand: () => {
         console.log("Discard hand");
-      },
+      }, */
     },
   }
 );
