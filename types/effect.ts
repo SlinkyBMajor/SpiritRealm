@@ -1,6 +1,13 @@
 export type ActionType = "damage" | "heal";
 
-export type Element = "none" | "fire" | "lightning";
+export enum ElementTypes {
+  "none" = "none",
+  "fire" = "fire",
+  "lightning" = "lightning",
+  "chaos" = "chaos",
+}
+
+export type Element = keyof typeof ElementTypes;
 
 /* export enum Action {
   damage = "damage",

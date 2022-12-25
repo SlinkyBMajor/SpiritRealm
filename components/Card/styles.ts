@@ -50,6 +50,9 @@ export const PhysicalCard = styled.div<{ shine: boolean }>`
   margin-right: 0.8rem;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease-in-out;
+  &:hover {
+    cursor: grab;
+  }
   &:after {
     content: "";
     position: absolute;
@@ -83,9 +86,6 @@ export const CardImage = styled(Image)`
   margin-bottom: 8px;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  &:hover {
-    cursor: grab;
-  }
   &:hover:after {
     position: absolute;
     content: "";

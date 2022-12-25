@@ -1,6 +1,7 @@
 import React from "react";
-import { motion, MotionProps } from "framer-motion";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { motion } from "framer-motion";
+import { useSelector } from "@xstate/react";
+import { uniq, map } from "lodash";
 
 import { ICard } from "../../types/card";
 import {
@@ -10,14 +11,9 @@ import {
   PhysicalCard,
   Tags,
 } from "./styles";
-import {
-  faBoltLightning,
-  faFire,
-  faSpa,
-} from "@fortawesome/free-solid-svg-icons";
 import { TurnStates } from "../../state-machines/turn-machine";
 import { useTurnState } from "../../state-machines/turn-machine/provider";
-import { useSelector } from "@xstate/react";
+import ElementTag from "../Indicators/ElementTag";
 
 interface CardProps {
   cardData: ICard;
@@ -32,7 +28,9 @@ export default function Card({ cardData }: CardProps) {
   const isPlayersTurn = useSelector(turnState.turnService, (state) =>
     state.matches(TurnStates.PlayerTurnActive)
   );
-  /* console.log(isPlayersTurn); */
+
+  // Create a array of all elements in effects array, with no duplicates
+  const cardTags = uniq(map(cardData.effects, "element"));
 
   return (
     <motion.div
@@ -67,33 +65,11 @@ export default function Card({ cardData }: CardProps) {
           <p>{cardData.description}</p>
         </DescriptionBox> */}
         <Tags>
-          <FontAwesomeIcon icon={faBoltLightning} />
-          <FontAwesomeIcon icon={faFire} />
-          <FontAwesomeIcon icon={faSpa} />
+          {cardTags.map((tag) => (
+            <ElementTag key={tag} element={tag} />
+          ))}
         </Tags>
       </PhysicalCard>
     </motion.div>
   );
-}
-
-{
-  /* <motion.div
-drag
-dragSnapToOrigin
-initial={{ opacity: 0, scale: 0.7 }}
-animate={{ opacity: 1, scale: 1 }}
-exit={{ opacity: 0 }}
-variants={fmItem}
-whileHover={{
-  scale: 1.1,
-  transition: { duration: 0.2 },
-}}
-transition={{ duration: 0.4, ease: "easeOut" }}
-dragConstraints={{
-  top: -300,
-  left: -30,
-  right: 30,
-  bottom: 0,
-}}
-> */
 }
