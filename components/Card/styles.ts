@@ -88,10 +88,10 @@ export const CardImage = styled(Image)`
     content: "";
     width: 100%;
     overflow: hidden;
-    height: 140px;
+    height: ${cardHeight / 1.8}rem;
     background: inherit;
     filter: blur(8px); /* glow range */
-    opacity: 0.3;
+    opacity: 1;
     mix-blend-mode: lighten; /* lighter (add) can be used as well */
   }
 `;
@@ -108,6 +108,7 @@ export const DescriptionBox = styled.div`
 export const Tags = styled.div`
   display: flex;
   padding: 0.5em 1em;
+  font-size: 11px;
   & > * {
     margin-right: 6px;
   }

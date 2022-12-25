@@ -10,7 +10,7 @@ import {
   PhysicalCard,
   Tags,
 } from "./styles";
-import { faBoltLightning, faFire } from "@fortawesome/free-solid-svg-icons";
+import { faBoltLightning, faFire, faSpa } from "@fortawesome/free-solid-svg-icons";
 import { TurnStates } from "../../state-machines/turn-machine";
 import { useTurnState } from "../../state-machines/turn-machine/provider";
 import { useSelector } from "@xstate/react";
@@ -40,6 +40,7 @@ export default function Card({ cardData }: CardProps) {
       whileHover={{
         scale: 1.4,
         transition: { duration: 0.2 },
+        y: -20,
       }}
       transition={{ duration: 0.4, ease: "easeOut" }}
       dragConstraints={{
@@ -64,6 +65,7 @@ export default function Card({ cardData }: CardProps) {
         <Tags>
           <FontAwesomeIcon icon={faBoltLightning} />
           <FontAwesomeIcon icon={faFire} />
+          <FontAwesomeIcon icon={faSpa} />
         </Tags>
       </PhysicalCard>
     </motion.div>
