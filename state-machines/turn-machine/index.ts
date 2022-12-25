@@ -1,3 +1,4 @@
+import { assign } from "lodash";
 import { createMachine } from "xstate";
 
 /*******************************************
@@ -12,64 +13,62 @@ export enum TurnStates {
   EnemyTurnEnd = "enemyTurnEnd",
 }
 
+interface TurnContext {
+  turn: number;
+}
+
+type Event = { type: "PROGRESS" };
+
 /*******************************************
  *** Machine
  ******************************************/
-export const turnStateMachine = createMachine(
-  {
-    id: "turnMachine",
-    initial: TurnStates.PlayerTurnStart,
-    predictableActionArguments: true,
-    schema: {
-      // The events this machine handles
-      events: { type: "PROGRESS" },
+export const turnStateMachine = createMachine({
+  id: "turnMachine",
+  initial: TurnStates.PlayerTurnStart,
+  predictableActionArguments: true,
+  schema: {
+    // The events this machine handles
+    events: {} as Event,
+    context: {} as { turn: number },
+  },
+  context: {
+    turn: 0,
+  },
+  states: {
+    [TurnStates.PlayerTurnStart]: {
+      entry: ["drawHand"],
+      on: {
+        PROGRESS: TurnStates.PlayerTurnActive,
+      },
     },
-    states: {
-      [TurnStates.PlayerTurnStart]: {
-        entry: ["drawHand"],
-        on: {
-          PROGRESS: TurnStates.PlayerTurnActive,
-        },
+    [TurnStates.PlayerTurnActive]: {
+      on: {
+        PROGRESS: TurnStates.PlayerTurnEnd,
       },
-      [TurnStates.PlayerTurnActive]: {
-        on: {
-          PROGRESS: TurnStates.PlayerTurnEnd,
-        },
+    },
+    [TurnStates.PlayerTurnEnd]: {
+      entry: ["discardHand"],
+      on: {
+        PROGRESS: TurnStates.EnemyTurnStart,
       },
-      [TurnStates.PlayerTurnEnd]: {
-        entry: ["discardHand"],
-        on: {
-          PROGRESS: TurnStates.EnemyTurnStart,
-        },
+    },
+    [TurnStates.EnemyTurnStart]: {
+      entry: ["tempProgress"],
+      on: {
+        PROGRESS: TurnStates.EnemyTurnActive,
       },
-      [TurnStates.EnemyTurnStart]: {
-        entry: ["tempProgress"],
-        on: {
-          PROGRESS: TurnStates.EnemyTurnActive,
-        },
+    },
+    [TurnStates.EnemyTurnActive]: {
+      entry: ["tempProgress"],
+      on: {
+        PROGRESS: TurnStates.EnemyTurnEnd,
       },
-      [TurnStates.EnemyTurnActive]: {
-        entry: ["tempProgress"],
-        on: {
-          PROGRESS: TurnStates.EnemyTurnEnd,
-        },
-      },
-      [TurnStates.EnemyTurnEnd]: {
-        entry: ["tempProgress"],
-        on: {
-          PROGRESS: TurnStates.PlayerTurnStart,
-        },
+    },
+    [TurnStates.EnemyTurnEnd]: {
+      entry: ["tempProgress"],
+      on: {
+        PROGRESS: TurnStates.PlayerTurnStart,
       },
     },
   },
-  {
-    actions: {
-      /*   drawHand: () => {
-        console.log("Draw hand");
-      },
-      discardHand: () => {
-        console.log("Discard hand");
-      }, */
-    },
-  }
-);
+});

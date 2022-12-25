@@ -83,6 +83,9 @@ export const CardImage = styled(Image)`
   margin-bottom: 8px;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+  &:hover {
+    cursor: grab;
+  }
   &:hover:after {
     position: absolute;
     content: "";
