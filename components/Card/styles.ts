@@ -2,6 +2,9 @@ import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import Image from "next/image";
 
+export const cardWidth = 6.2;
+export const cardHeight = 9;
+
 const shine = keyframes`
   0% {
     transform: rotate(0deg) translateY(0px);
@@ -38,8 +41,8 @@ export const PhysicalCard = styled.div<{ shine: boolean }>`
     rgba(19, 14, 41, 1) 100%
   );
   flex-direction: column;
-  width: 8.5rem;
-  height: 11.5rem;
+  width: ${cardWidth}rem;
+  height: ${cardHeight}rem;
   border-radius: 8px;
   overflow: hidden;
   border-top: 1px solid rgb(71, 62, 125);
@@ -50,7 +53,7 @@ export const PhysicalCard = styled.div<{ shine: boolean }>`
   &:after {
     content: "";
     position: absolute;
-    width: 8.5rem;
+    width: ${cardWidth}rem;
     height: 100%;
     background-color: #c7268c;
     box-shadow: -8px -6px 0 #f70b50;
@@ -75,7 +78,7 @@ export const CardImage = styled(Image)`
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   background-size: cover;
   background-repeat: no-repeat;
-  height: 110px;
+  height: ${cardHeight / 1.8}rem;
   width: 100%;
   margin-bottom: 8px;
   border-bottom-left-radius: 8px;

@@ -6,7 +6,7 @@ import { Board, UIWrapper } from "../components/Layouts/GameLayout/styles";
 import DeckStateProvider from "../context/deck-state";
 import { TurnMachineProvider } from "../state-machines/turn-machine/provider";
 import TopUIBar from "../components/TopUIBar/TopUIBar";
-import FallingParticles from "../components/VisualEffects/FallingParticles";
+import MovingParticles from "../components/VisualEffects/MovingParticles";
 
 export default function Game() {
   return (
@@ -14,7 +14,7 @@ export default function Game() {
       <DeckStateProvider>
         <TurnMachineProvider>
           <UIWrapper>
-            <FallingParticles amount={12} />
+            <MovingParticles speed={3} amount={18} />
             <TopUIBar />
             <Board></Board>
             <BottomBar />

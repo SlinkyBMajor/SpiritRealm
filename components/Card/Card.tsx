@@ -38,7 +38,7 @@ export default function Card({ cardData }: CardProps) {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0 }}
       whileHover={{
-        scale: 1.1,
+        scale: 1.4,
         transition: { duration: 0.2 },
       }}
       transition={{ duration: 0.4, ease: "easeOut" }}
