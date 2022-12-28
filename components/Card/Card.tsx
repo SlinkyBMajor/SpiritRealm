@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { useSelector } from "@xstate/react";
+import { useMachine, useSelector } from "@xstate/react";
 import { uniq, map } from "lodash";
 
 import { ICard } from "../../types/card";
@@ -14,6 +14,11 @@ import {
 import { TurnStates } from "../../state-machines/turn-machine";
 import { useTurnState } from "../../state-machines/turn-machine/provider";
 import ElementTag from "../Indicators/ElementTag";
+import {
+  cardStateMachine,
+  CardStates,
+} from "../../state-machines/card-machine";
+import ParticleEmitter from "../VisualEffects/ParticleEmitter";
 
 interface CardProps {
   cardData: ICard;
@@ -24,6 +29,7 @@ interface CardProps {
 } */
 
 export default function Card({ cardData }: CardProps) {
+  const [state, send] = useMachine(cardStateMachine);
   const turnState = useTurnState();
   const isPlayersTurn = useSelector(turnState.turnService, (state) =>
     state.matches(TurnStates.PlayerTurnActive)
@@ -32,9 +38,18 @@ export default function Card({ cardData }: CardProps) {
   // Create a array of all elements in effects array, with no duplicates
   const cardTags = uniq(map(cardData.effects, "element"));
 
+  // Check where the card was dropped
+  const checkDropTarget = (e: MouseEvent) => {
+    console.log(e);
+    // Temp
+    send("CANCEL_DRAG");
+  };
+
   return (
     <motion.div
       drag
+      onDragStart={() => send("START_DRAG")}
+      onDragEnd={checkDropTarget}
       dragSnapToOrigin
       initial={{ opacity: 0, scale: 0.3 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -53,6 +68,9 @@ export default function Card({ cardData }: CardProps) {
       }}
     >
       <PhysicalCard shine={isPlayersTurn}>
+        {state.matches(CardStates.Dragging) && (
+          <ParticleEmitter moveTo={{ x: 600, y: 200 }} sourceHeight={100} />
+        )}
         <CardImage
           src={`/static-assets/card-images/${cardData.image}.png`}
           alt="chaos_bolt"
