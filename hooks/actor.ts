@@ -30,12 +30,14 @@ export type ManaType = "white" | "lightning" | "chaos";
 export interface Actor extends ActorProperties {
   isDead: () => boolean;
   takeDamage: (value: number) => void;
-  spendMana: (value: number, type: string) => void;
+  spendMana: (value: number, type: ManaType) => void;
 }
 
 export function useActor(actorProperties: ActorProperties): Actor {
   const [properties, setProperties] =
     useState<ActorProperties>(actorProperties);
+
+  console.log({ properties });
 
   useEffect(() => {
     if (properties._currentHP < 1) {
@@ -55,71 +57,25 @@ export function useActor(actorProperties: ActorProperties): Actor {
     setProperties((prev) => ({ ...prev, _currentHP: prev._currentHP - value }));
   };
 
-  const spendMana = (value: number, type: string) => {
+  const spendMana = (value: number, type: ManaType) => {
     if (typeof value !== "number") {
       throw new Error("takeDamage got non number value");
     }
 
     console.log("Actor spent mana", ":", value, type);
 
-    if (type === "white") {
-      const change = setProperties((prev) => ({
-        ...prev,
-        _mana: {
-          white: {
-            ...prev._mana.white,
-            current: prev._mana.white.current - value,
-          },
-          lightning: {
-            ...prev._mana.lightning,
-          },
-          chaos: {
-            ...prev._mana.chaos,
-          },
-        },
-      }));
+    const newManaObject = {
+      ...properties._mana[type as ManaType],
+      current: properties._mana[type].current - value,
+    };
 
-      return change;
-    }
-    if (type === "lightning") {
-      const change = setProperties((prev) => ({
-        ...prev,
-        _mana: {
-          white: {
-            ...prev._mana.white,
-          },
-          lightning: {
-            ...prev._mana.lightning,
-            current: prev._mana.lightning.current - value,
-          },
-          chaos: {
-            ...prev._mana.chaos,
-          },
-        },
-      }));
-
-      return change;
-    }
-
-    if (type === "chaos") {
-      const change = setProperties((prev) => ({
-        ...prev,
-        _mana: {
-          white: {
-            ...prev._mana.white,
-          },
-          lightning: {
-            ...prev._mana.lightning,
-          },
-          chaos: {
-            ...prev._mana.chaos,
-            current: prev._mana.chaos.current - value,
-          },
-        },
-      }));
-
-      return change;
-    }
+    setProperties((prev) => ({
+      ...prev,
+      _mana: {
+        ...prev._mana,
+        [type]: newManaObject,
+      },
+    }));
   };
 
   return { ...properties, takeDamage, spendMana, isDead };

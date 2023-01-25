@@ -9,17 +9,15 @@ import { usePlayerState } from "../../context/player-state";
 
 const hand = [cards[0], cards[0], cards[0]];
 
-export interface ManaRombType {
-  type: ManaType;
-  color: string;
-  manaPercent: number;
-}
-
 export default function BottomBar() {
   const player = usePlayerState();
 
   const manaRombs = Object.entries(player!._mana).map(([type, manaObject]) => (
-    <GeneralManaRomb key={type} type={type} manaObject={manaObject} />
+    <GeneralManaRomb
+      key={type}
+      type={type as ManaType}
+      manaObject={manaObject}
+    />
   ));
 
   return (

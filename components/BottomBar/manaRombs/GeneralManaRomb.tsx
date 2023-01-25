@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-import { ManaProperty } from "../../../hooks/actor";
+import { ManaProperty, ManaType } from "../../../hooks/actor";
 import { usePlayerState } from "../../../context/player-state";
 
 const Romb = styled.div`
@@ -42,7 +42,7 @@ enum manaColors {
 }
 
 interface GeneralManaRombProps {
-  type: string;
+  type: ManaType;
   manaObject: ManaProperty;
 }
 
