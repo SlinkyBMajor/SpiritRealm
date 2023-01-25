@@ -65,7 +65,7 @@ export function useActor(actorProperties: ActorProperties): Actor {
     console.log("Actor spent mana", ":", value, type);
 
     const newManaObject = {
-      ...properties._mana[type as ManaType],
+      ...properties._mana[type],
       current: properties._mana[type].current - value,
     };
 
