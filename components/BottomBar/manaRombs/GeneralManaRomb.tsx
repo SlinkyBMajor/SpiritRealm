@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 
-import { ManaProperty, ManaType } from "../../../hooks/actor";
+import { ManaPools, ManaProperty, ManaType } from "../../../hooks/actor";
 import { usePlayerState } from "../../../context/player-state";
 
 const Romb = styled.div`
@@ -55,9 +55,13 @@ export default function GeneralManaRomb({
   const manaPerecent =
     manaObject.current > 0 ? (manaObject.current / manaObject.max) * 100 : 0;
 
-  if (manaPerecent <= 0) {
-    alert("You don't have any mana, go meditate bru");
-  }
+  useEffect(() => {
+    console.log(manaPerecent, "% left", type);
+
+    if (manaPerecent <= 0) {
+      alert("You don't have any mana, go meditate bru");
+    }
+  }, [manaPerecent, type]);
 
   return (
     <>

@@ -14,7 +14,7 @@ export interface ActorProperties {
   _team: Team;
 }
 
-interface ManaPools {
+export interface ManaPools {
   white: ManaProperty;
   lightning: ManaProperty;
   chaos: ManaProperty;
@@ -36,8 +36,6 @@ export interface Actor extends ActorProperties {
 export function useActor(actorProperties: ActorProperties): Actor {
   const [properties, setProperties] =
     useState<ActorProperties>(actorProperties);
-
-  console.log({ properties });
 
   useEffect(() => {
     if (properties._currentHP < 1) {
