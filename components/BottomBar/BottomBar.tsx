@@ -1,17 +1,28 @@
 import React from "react";
+
 import cards from "../../data/cards";
 import Card from "../Card/Card";
-import ManaRomb from "./ManaRomb";
+import GeneralManaRomb from "./manaRombs/GeneralManaRomb";
 import { Bar, Hand, HandWrapper, ManaContainer } from "./styles";
+import { ManaType } from "../../hooks/actor";
+import { usePlayerState } from "../../context/player-state";
 
 const hand = [cards[0], cards[0], cards[0]];
 
 export default function BottomBar() {
+  const player = usePlayerState();
+
+  const manaRombs = Object.entries(player!._mana).map(([type, manaObject]) => (
+    <GeneralManaRomb
+      key={type}
+      type={type as ManaType}
+      manaObject={manaObject}
+    />
+  ));
+
   return (
     <Bar>
-      <ManaContainer>
-        <ManaRomb />
-      </ManaContainer>
+      <ManaContainer>{manaRombs}</ManaContainer>
       <HandWrapper>
         <Hand>
           {hand.map((card, i) => (

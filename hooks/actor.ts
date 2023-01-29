@@ -5,22 +5,32 @@ export enum Team {
   enemy = "ENEMY", // Enemies
   ally = "ALLY", // Player + Allies of player
 }
-// Properties start with underscore to differentiate between them and the "methods" (takeDamage etc)
 
-type ManaProperty = { max: number; current: number };
+// Properties start with underscore to differentiate between them and the "methods" (takeDamage etc)
 export interface ActorProperties {
   _maxHP: number;
   _currentHP: number;
-  _mana: {
-    white: ManaProperty;
-  };
+  _mana: ManaPools;
   _team: Team;
 }
+
+export interface ManaPools {
+  white: ManaProperty;
+  lightning: ManaProperty;
+  chaos: ManaProperty;
+}
+
+export type ManaProperty = {
+  max: number;
+  current: number;
+};
+
+export type ManaType = "white" | "lightning" | "chaos";
 
 export interface Actor extends ActorProperties {
   isDead: () => boolean;
   takeDamage: (value: number) => void;
-  spendMana: (value: number) => void;
+  spendMana: (value: number, type: ManaType) => void;
 }
 
 export function useActor(actorProperties: ActorProperties): Actor {
@@ -45,18 +55,23 @@ export function useActor(actorProperties: ActorProperties): Actor {
     setProperties((prev) => ({ ...prev, _currentHP: prev._currentHP - value }));
   };
 
-  const spendMana = (value: number) => {
+  const spendMana = (value: number, type: ManaType) => {
     if (typeof value !== "number") {
       throw new Error("takeDamage got non number value");
     }
-    console.log("Actor spent mana", value);
+
+    console.log("Actor spent mana", ":", value, type);
+
+    const newManaObject = {
+      ...properties._mana[type],
+      current: properties._mana[type].current - value,
+    };
+
     setProperties((prev) => ({
       ...prev,
       _mana: {
-        white: {
-          ...prev._mana.white,
-          current: prev._mana.white.current - value,
-        },
+        ...prev._mana,
+        [type]: newManaObject,
       },
     }));
   };
