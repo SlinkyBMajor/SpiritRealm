@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useDeckState } from "../../context/deck-state";
 import { Button } from "../Base";
 import Card from "../Card/Card";
-import ManaRomb from "./ManaRomb";
 import {
   Bar,
   Hand,
@@ -14,6 +13,8 @@ import {
 } from "./styles";
 import { effectReducer } from "../../reducers/effect-reducer";
 import { usePlayerState } from "../../context/player-state";
+import GeneralManaRomb from "./manaRombs/GeneralManaRomb";
+import { ManaType } from "../../hooks/actor";
 
 export default function BottomBar() {
   const { _hand, _discardPile, _drawPile, drawCards } = useDeckState();
@@ -21,13 +22,19 @@ export default function BottomBar() {
 
   const [state, dispatch] = useReducer(effectReducer, []);
 
+  const manaRombs = Object.entries(player!._mana).map(([type, manaObject]) => (
+    <GeneralManaRomb
+      key={type}
+      type={type as ManaType}
+      manaObject={manaObject}
+    />
+  ));
+
   console.log({ _hand, _discardPile, _drawPile });
 
   return (
     <Bar>
-      <ManaContainer>
-        <ManaRomb />
-      </ManaContainer>
+      <ManaContainer>{manaRombs}</ManaContainer>
       <HandWrapper>
         <Hand>
           <AnimatePresence>

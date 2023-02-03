@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext } from "react";
+
 import { Actor, Team, useActor } from "../hooks/actor";
 
 const defaultPlayer = {
@@ -10,6 +11,14 @@ const defaultPlayer = {
     white: {
       max: 4,
       current: 4,
+    },
+    lightning: {
+      max: 10,
+      current: 10,
+    },
+    chaos: {
+      max: 8,
+      current: 8,
     },
   },
 };
