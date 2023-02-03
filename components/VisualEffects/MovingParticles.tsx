@@ -17,6 +17,7 @@ const ParticleContainer = styled.div`
   width: 60%;
   height: 100%;
   opacity: 0.3;
+  pointer-events: none;
 `;
 
 const Particle = styled.div<{ seed: number; speed: number }>`
