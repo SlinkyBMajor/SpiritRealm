@@ -5,7 +5,6 @@ import { times, random } from "lodash";
 
 const Container = styled.div`
   position: absolute;
-  /* top: 50%; */
 `;
 
 const Particle = styled(motion.div)`
@@ -31,30 +30,37 @@ export default function ParticleEmitter({
 }: ParticleEmitterProps) {
   console.log(moveTo);
 
-  const animationSettings = {
-    x: [0, moveTo.x || 0],
-    y: [random(0, sourceHeight), moveTo.y || 0],
+  const baseAnimation = {
     transitionEnd: {
       display: "none",
     },
   };
 
-  console.log({ animationSettings });
+  // Provides animation config for a specific particle
+  const getParticleAnimation = () => {
+    return {
+      x: [0, moveTo.x || 0],
+      y: [random(0, sourceHeight), moveTo.y || 0],
+    };
+  };
 
   return (
     <Container {...rest}>
-      {times(particles || 25, (i) => (
-        <Particle
-          key={111 + i}
-          transition={{
-            duration: 2.2,
-            repeat: Infinity,
-            delay: random(0, 2, true),
-            type: "spring",
-          }}
-          animate={animationSettings}
-        />
-      ))}
+      {times(particles || 25, (i) => {
+        const aniConf = getParticleAnimation();
+        return (
+          <Particle
+            key={111 + i}
+            transition={{
+              duration: 2.2,
+              repeat: Infinity,
+              delay: random(0, 2, true),
+              type: "spring",
+            }}
+            animate={{ ...baseAnimation, ...aniConf }}
+          />
+        );
+      })}
     </Container>
   );
 }

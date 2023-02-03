@@ -22,7 +22,7 @@ export const TurnMachineProvider = ({ children }: TurnStateProviderProps) => {
     turnStateMachine,
     {
       actions: {
-        drawHand: () => drawCards({ amount: 2 }),
+        drawHand: () => drawCards({ amount: 1 }),
         discardHand: () => discardHand(),
         tempProgress: send({ type: "PROGRESS" }),
       },

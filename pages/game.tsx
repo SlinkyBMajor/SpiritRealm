@@ -7,18 +7,21 @@ import DeckStateProvider from "../context/deck-state";
 import { TurnMachineProvider } from "../state-machines/turn-machine/provider";
 import TopUIBar from "../components/TopUIBar/TopUIBar";
 import MovingParticles from "../components/VisualEffects/MovingParticles";
+import { EffectReducerProvider } from "../reducers/effect-reducer";
 
 export default function Game() {
   return (
     <PlayerStateProvider>
       <DeckStateProvider>
         <TurnMachineProvider>
-          <UIWrapper>
-            <MovingParticles speed={3} amount={18} />
-            <TopUIBar />
-            <Board></Board>
-            <BottomBar />
-          </UIWrapper>
+          <EffectReducerProvider>
+            <UIWrapper>
+              <MovingParticles speed={3} amount={18} />
+              <TopUIBar />
+              <Board></Board>
+              <BottomBar />
+            </UIWrapper>
+          </EffectReducerProvider>
         </TurnMachineProvider>
       </DeckStateProvider>
     </PlayerStateProvider>

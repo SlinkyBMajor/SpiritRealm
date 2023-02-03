@@ -45,9 +45,9 @@ interface MovingParticles {
  * Each particle gets a random seed for its lifetime, this improves the peformance
  */
 export default function MovingParticles({ amount, speed }: MovingParticles) {
-  const particles = times(amount, () => {
+  const particles = times(amount, (i) => {
     const seed = random(0, 10, true); // Generate a fixed seed for the particle
-    return <Particle seed={seed} speed={speed} />;
+    return <Particle seed={seed} speed={speed} key={seed + i} />;
   });
   return <ParticleContainer>{particles}</ParticleContainer>;
 }

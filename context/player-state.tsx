@@ -5,6 +5,7 @@ const defaultPlayer = {
   _maxHP: 100,
   _currentHP: 100,
   _team: Team.ally,
+  _effects: [],
   _mana: {
     white: {
       max: 4,

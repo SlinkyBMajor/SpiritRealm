@@ -29,25 +29,35 @@ export function useCreateDeck(intialDeckState: DeckStateProperties): DeckState {
   // Draw X cards, (type is not implemented)
   const drawCards = (instructions: DrawInstructions) => {
     // We use a temporary arrays so we just need to set to state once
-    const newDrawPile: ICard[] = deckState._drawPile;
+    let newDrawPile: ICard[] = deckState._drawPile;
     const newHand: ICard[] = [];
     // Draw one card at a time, to handle recycle logic
     for (let i = 0; i < instructions.amount; i++) {
-      // Pick a random card from draw pile
-      const [card, index] = randomFromArray(newDrawPile);
-      // Put the card in the hand, and remove (splice) it from the drawPile
-      newHand.push(card);
-      newDrawPile.splice(index, 1);
-      // If no cards in draw pile, recycle the discard pile
+      if (!newDrawPile.length && !deckState._discardPile.length) {
+        // No cards to draw, and no cards to recycle. Stop the draw
+        return;
+      }
+      // If no cards in draw pile, recycle the discard pile => draw pile
       if (!newDrawPile.length) {
         recycleDeck();
+        newDrawPile = deckState._drawPile;
       }
-      setDeckState((prev) => ({
-        ...prev,
-        _hand: [...prev._hand, card],
-        _drawPile: newDrawPile,
-      }));
+      drawCard();
     }
+  };
+
+  // Draw ONE card
+  const drawCard = async () => {
+    // Pick a random card from draw pile
+    const [card, index] = randomFromArray(deckState._drawPile);
+    // Remove (splice) it from the drawPile
+    const newDrawPile = [...deckState._drawPile].splice(index, 1);
+    // Set new deckState
+    setDeckState((prev) => ({
+      ...prev,
+      _hand: [...prev._hand, card],
+      _drawPile: newDrawPile,
+    }));
   };
 
   // Discard the entire hand

@@ -1,4 +1,3 @@
-import { assign } from "lodash";
 import { createMachine } from "xstate";
 
 /*******************************************

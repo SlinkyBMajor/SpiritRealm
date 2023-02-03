@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { Effect } from "../types/effect";
 
 export enum Team {
   neutral = "NEUTRAL", // Non attackable
@@ -15,11 +16,13 @@ export interface ActorProperties {
     white: ManaProperty;
   };
   _team: Team;
+  _effects: Effect[]; // Effects currently active on actor
 }
 
 export interface Actor extends ActorProperties {
   isDead: () => boolean;
   takeDamage: (value: number) => void;
+  heal: (value: number) => void;
   spendMana: (value: number) => void;
 }
 
@@ -33,16 +36,41 @@ export function useActor(actorProperties: ActorProperties): Actor {
     }
   }, [properties._currentHP]);
 
+  // Check if the actor is dead
   const isDead = useCallback(() => {
     return properties._currentHP < 1;
   }, [properties._currentHP]);
+
+  // Adds an effect to this actors effect array
+  const addEffect = (effect: Effect) => {
+    // TODO: Stacking effects?
+    setProperties((prev) => ({
+      ...prev,
+      _effects: [...prev._effects, effect],
+    }));
+  };
 
   const takeDamage = (value: number) => {
     if (typeof value !== "number") {
       throw new Error("takeDamage got non number value");
     }
-    console.log("Actor took damage", value);
     setProperties((prev) => ({ ...prev, _currentHP: prev._currentHP - value }));
+  };
+
+  const heal = (value: number) => {
+    if (typeof value !== "number") {
+      throw new Error("heal got non number value");
+    }
+    // If heal value would make the actor have more HP than max, set it to max
+    setProperties((prev) => {
+      return {
+        ...prev,
+        _currentHP:
+          prev._currentHP + value <= prev._maxHP
+            ? prev._currentHP + value
+            : prev._maxHP,
+      };
+    });
   };
 
   const spendMana = (value: number) => {
@@ -61,5 +89,5 @@ export function useActor(actorProperties: ActorProperties): Actor {
     }));
   };
 
-  return { ...properties, takeDamage, spendMana, isDead };
+  return { ...properties, takeDamage, spendMana, isDead, heal };
 }

@@ -1,11 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import Test from "../components/Test";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
-  /* const [show, setShow] = useState(true); */
   return (
     <div className={styles.container}>
       <Head>
@@ -16,7 +14,6 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>Welcome to Spirit Realm</h1>
-        <Test />
 
         <div className={styles.grid}>
           <Link href="/game" className={styles.card}>
