@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap");
-
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -132,10 +131,12 @@ html,
 body {
   padding: 0;
   margin: 0;
-  /* font-family: "Quicksand", sans-serif; */
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  cursor: grab;
+  /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
+  cursor: cell;
+  background: #121327;
+  color: beige;
+  font-family: 'Quicksand', sans-serif;
 }
 
 a {
@@ -151,7 +152,7 @@ button {
   max-height: 32px;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
@@ -159,4 +160,4 @@ button {
     color: white;
     background: #121327;
   }
-}
+} */

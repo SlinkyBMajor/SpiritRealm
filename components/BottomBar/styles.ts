@@ -1,16 +1,25 @@
 import styled from "@emotion/styled";
+import { motion } from "framer-motion";
 
 export const Bar = styled.div`
   display: flex;
   width: 100%;
-  background-color: black;
+  background-color: transparent;
   height: 15vh;
   /* border-top: 1px solid red; */
-  /* padding: 0 5%; */
 `;
 
 export const ManaContainer = styled.div`
   display: flex;
+  flex-grow: 1;
+  /* border: 1px solid red; */
+  height: 15vh;
+  padding: 0 5%;
+`;
+export const ToolsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   flex-grow: 1;
   /* border: 1px solid red; */
   height: 15vh;
@@ -28,7 +37,7 @@ export const HandWrapper = styled.div`
   position: relative;
   place-content: center;
   place-items: center;
-  flex-grow: 4;
-  /* border: 1px solid red; */
+  flex-grow: 5;
+  z-index: 2;
   height: 15vh;
 `;
