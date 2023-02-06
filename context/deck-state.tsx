@@ -3,7 +3,7 @@ import cards from "../data/cards";
 import { DeckState, DeckStateProperties, useCreateDeck } from "../hooks/deck";
 
 const defaultDeck: DeckStateProperties = {
-  _drawPile: [cards[0], cards[0], cards[0], cards[0], cards[0], cards[0]],
+  _drawPile: [cards[2]],
   _discardPile: [],
   _hand: [],
 };

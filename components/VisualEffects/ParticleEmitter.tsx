@@ -16,7 +16,7 @@ const Particle = styled(motion.div)`
 `;
 
 interface ParticleEmitterProps {
-  moveTo?: { x: number; y: number }; // Particles will move to this destination
+  moveTo: { x: number; y: number }; // Particles will move to this destination
   particles?: number; // Number of particles to spawn
   sourceHeight: number; // Spreads the particles spawn along the given height
   sourceWidth?: number; // Spreads the particles spawn along the given width

@@ -47,7 +47,7 @@ export default function Playground() {
 
   return (
     <div>
-      <ParticleEmitter moveTo={{ x, y }} />
+      <ParticleEmitter moveTo={{ x, y }} sourceHeight={20} />
       <Target ref={boxRef} />
     </div>
   );

@@ -38,10 +38,12 @@ type Trigger = {
   when: "instant" & keyof typeof TurnStates;
 };
 
+export type EffectValue = number | number[] | Status[];
+
 export interface Effect {
   type: ActionType;
   trigger?: Trigger;
-  value: number | number[] | Status[]; // damage/heal value, | Array to ramp
+  value: EffectValue; // damage/heal value, | Array to ramp
   element: Element; // what element, if any
   activations?: number; // number of times this effect can trigger before getting removed
   permanent?: boolean; // If permanent, the effect can not be removed

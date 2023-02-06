@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Effect } from "../types/effect";
+import { Effect, EffectValue } from "../types/effect";
 
 export enum Team {
   neutral = "NEUTRAL", // Non attackable
@@ -31,8 +31,8 @@ export type ManaType = "white" | "lightning" | "chaos";
 
 export interface Actor extends ActorProperties {
   isDead: () => boolean;
-  takeDamage: (value: number) => void;
-  heal: (value: number) => void;
+  takeDamage: (value: EffectValue) => void;
+  heal: (value: EffectValue) => void;
   spendMana: (value: number, type: ManaType) => void;
 }
 
@@ -60,14 +60,14 @@ export function useActor(actorProperties: ActorProperties): Actor {
     }));
   };
 
-  const takeDamage = (value: number) => {
+  const takeDamage = (value: EffectValue) => {
     if (typeof value !== "number") {
       throw new Error("takeDamage got non number value");
     }
     setProperties((prev) => ({ ...prev, _currentHP: prev._currentHP - value }));
   };
 
-  const heal = (value: number) => {
+  const heal = (value: EffectValue) => {
     if (typeof value !== "number") {
       throw new Error("heal got non number value");
     }

@@ -69,11 +69,15 @@ export default function Card({ cardData }: CardProps) {
     >
       <PhysicalCard shine={isPlayersTurn}>
         {state.matches(CardStates.Dragging) && (
-          <ParticleEmitter moveTo={{ x: 600, y: 200 }} sourceHeight={100} particles={42} />
+          <ParticleEmitter
+            moveTo={{ x: 600, y: 200 }}
+            sourceHeight={100}
+            particles={42}
+          />
         )}
         <CardImage
           src={`/static-assets/card-images/${cardData.image}.png`}
-          alt="chaos_bolt"
+          alt={cardData.name}
           width={150}
           height={150}
           draggable={false}

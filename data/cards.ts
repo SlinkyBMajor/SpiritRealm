@@ -43,7 +43,7 @@ const cards: ICard[] = [
   },
   {
     name: "Frost nova",
-    image: "frost_nova",
+    image: "test",
     description: "Incase an enemy in solid ice",
     flavour: "Channeling your inner cold bam",
     target: {
